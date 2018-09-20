@@ -2,7 +2,7 @@
 300.0 #T=300K
 4.6518e-26 #massOfNitrogenMolecule(M=4.6518e-26kg)
 0.3 #sputteringYieldOfCompoundByIncomingArgonIons(S_N=0.3)
-1.4 #currentDensityOfArgonIonsCausingSputteringFromTargetSurface(J=1.4mA/cm²)
+0.2e-3 #currentDensityOfArgonIonsCausingSputteringFromTargetSurface(J=1.4A/cm²)
 127.0 #TargetSurface(A_t=127cm²)
 1270.0 #ExposedChamberSurface(A_c=1270cm²)
 1.5 #sputteringYieldOfElementalMetalMaterialByIncomingArgonIons(S_M=1.5)
