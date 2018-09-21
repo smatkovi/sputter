@@ -1,11 +1,11 @@
-2.0 #initialNitrogenPartialPressure(p_N=1bar)
+0.1 #initialNitrogenPartialPressure(p_N=1bar)
 300.0 #T=300K
 4.6518e-26 #massOfNitrogenMolecule(M=4.6518e-26kg)
 0.3 #sputteringYieldOfCompoundByIncomingArgonIons(S_N=0.3)
-1.4 #currentDensityOfArgonIonsCausingSputteringFromTargetSurface(J=1.4mA/cm²)
+0.2 #currentDensityOfArgonIonsCausingSputteringFromTargetSurface(J=1.4mA/cm²)
 127.0 #TargetSurface(A_t=127cm²)
 1270.0 #ExposedChamberSurface(A_c=1270cm²)
 1.5 #sputteringYieldOfElementalMetalMaterialByIncomingArgonIons(S_M=1.5)
 85.0 #PumpingSpeed(S=85l/s)
-1.0 #alpha_t
-1.0 #alpha_c
+1.0 #stickingCoefficientforNitrogenMoleculeToTitaniumTarget(alpha_t=1)
+1.0 #stickingcoefficientforNitrogenMoleculeToTitaniumCoveredPart(1-theta_2)OfChamberWall(alpha_c=1)
