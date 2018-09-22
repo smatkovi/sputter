@@ -3,32 +3,21 @@
 
 int main()
   {
-    FILE *inputvalues;
-    inputvalues = fopen("input.dat", "r");
     int i, n=1000; //i...loop variable n...number of iterations
     double Pi = 4.0*atan(1), e = 1.6021766e-19, k_B = 1.38065e-23; //constants
     double p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c; //inputvalues
     double F, theta_one, theta_two, q_t, q_c, q_p, q_zero, R; //outputvalues
-    double Fs[2*n], theta_ones[2*n], theta_twos[2*n], q_ts[2*n], q_cs[2*n], q_ps[2*n], q_zeros[2*n], Rs[2*n]; //storage arrays for outputvalues
 
-    //read the inputvalues:
-    if (inputvalues == NULL) printf ("file input.dat could not be opened\n");
-    else fscanf(inputvalues, "%lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s", &p_N, &T, &M, &S_N, &J, &A_t, &A_c, &S_M, &S, &alpha_t, &alpha_c);
-    
-    //print initial inputvalues:
-    printf("p_N is set to: %lebar\n", p_N);
-    printf("T is set to: %leK\n", T);
-    printf("M is set to: %lekg\n", M);
-    printf("S_N is set to: %le\n", S_N);
-    printf("J is set to: %lemA/cm²\n", J);
-    printf("A_t is set to: %lecm²\n", A_t);
-    printf("A_c is set to: %lecm²\n", A_c);
-    printf("S_M is set to: %le\n", S_M);
-    printf("S is set to: %lel/s\n", S);
-    printf("alpha_t is set to: %le\n", alpha_t);
-    printf("alpha_c is set to: %le\n", alpha_c);
+    //read inputvalues and print them:
+    FILE *iv;
+    iv = fopen("input.dat", "r");
+    fscanf(iv, "%lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s", &p_N, &T, &M, &S_N, &J, &A_t, &A_c, &S_M, &S, &alpha_t, &alpha_c);
+    printf("read values from input.dat:\np_N: %.1lfbar; T: %.0lfK; M: %.4lekg; S_N: %.1lf; J: %.1lfmA/cm²;\nA_t: %.0lfcm²; A_c: %.0lfcm²; S_M: %.1lf; S: %.0lfl/s; alpha_t: %.3lf; alpha_c: %.3lf\n", p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c);
+    fclose(iv);
 
-    fclose(inputvalues);
+    //write order of outputvalues to output.dat and do actual calculations:
+    FILE *ov = fopen("output.dat","w");
+    fprintf(ov, "p_N F theta_1 theta_2 q_ts q_cs q_ps q_zero R\n");
 
     for(i=0; i<2*n; i++)
       {
@@ -39,7 +28,8 @@ int main()
         theta_one = 1.0/(1.0 + J*S_N/(2.0*e*alpha_t*F));         
 	
 	//equation A2' for chamber wall and substrate fractional coverage theta_2:
-        theta_two = (e/J*2.0*alpha_c*F*A_c/A_t + S_N*theta_one)/(e/J*2.0*alpha_c*F*A_c/A_t + S_N*theta_one + S_M*(1.0 - theta_one));        
+        theta_two = (e/J*2.0*alpha_c*F*A_c/A_t + S_N*theta_one)/(e/J*2.0*alpha_c*F*A_c/A_t + S_N*theta_one + S_M*(1.0 - theta_one));       
+
 	//equation A3 for flow to target:
         q_t = alpha_t*F*(1.0 - theta_one)*A_t;         
 	
@@ -55,32 +45,13 @@ int main()
 	//equation A6 for total sputtering rate R:
         R = (J/e)*(S_N*theta_one + S_M*(1 - theta_one)); 	
 
-	//store values in arrays:
-        Fs[i] = F;
-        theta_ones[i] = theta_one;
-        theta_twos[i] = theta_two;
-        q_ts[i] = q_t;
-        q_cs[i] = q_c;
-        q_ps[i] = q_p;
-        q_zeros[i] = q_zero;
-        Rs[i] = R;
+	fprintf(ov, "%le %le %le %le %le %le %le %le %le\n", p_N, F, theta_one, theta_two, q_t, q_c, q_p, q_zero, R);
 
 	if(i<n) p_N+=0.1;
 	else p_N-=0.1;
       }
 
-    //write calculated values to file:
-    FILE *outputvalues = fopen("output.dat","w");
-    if (outputvalues == NULL) printf ("file output.dat could not be opened\n");
-    fprintf(outputvalues, "F theta_1 theta_2 q_ts q_cs q_ps q_zero R\n");
-    for(i=0; i<2*n; i++)
-      {
-        fprintf(outputvalues, "%le %le %le %le %le %le %le %le\n", Fs[i], theta_ones[i], theta_twos[i], q_ts[i], q_cs[i], q_ps[i], q_zeros[i], Rs[i]);
-      }
-    fclose(outputvalues);
-
-    //print last calculated values:
-    printf("values after %d times:\nF=%le\ntheta_1=%le\ntheta_2=%le\nq_t=%le\nq_c=%le\nq_p=%le\nq_zero=%le\nR=%le\n", n, F, theta_one, theta_two, q_t, q_c, q_p, q_zero, R);
-
+    fclose(ov);
+    printf("\ncalculated values written to output.dat\n");
     return 0;
   }
