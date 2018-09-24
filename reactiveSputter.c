@@ -13,12 +13,12 @@ int main()
     FILE *iv;
     iv = fopen("input.dat", "r");
     fscanf(iv, "%d %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s %lf %*s", &n, &dp, &p_N, &T, &M, &S_N, &J, &A_t, &A_c, &S_M, &S, &alpha_t, &alpha_c);
-    printf("read values from input.dat:\nn: %d; dp: %.0lePa; p_N: %.0lePa; T: %.0lfK; M: %.lekg; S_N: %.1lf; J: %.1leA/m²; A_t: %.0lem²; A_c: %.0lem²; S_M: %.1lf; S: %.0lfl/s; alpha_t: %.3lf; alpha_c: %.3lf\n", n, dp, p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c);
+    printf("read values from input.dat:\nn: %d; dp: %.0lePa; p_N: %.0lePa; T: %.0lfK; M: %.lekg; S_N: %.1lf; J: %.1leA/m²; A_t: %.2lem²; A_c: %.2lem²; S_M: %.1lf; S: %.0lfl/s; alpha_t: %.3lf; alpha_c: %.3lf\n", n, dp, p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c);
     fclose(iv);
 
     //write order of outputvalues to output.dat and do actual calculations:
     FILE *ov = fopen("output.dat","w");
-    fprintf(ov, "p_N F theta_1 theta_2 q_ts q_cs q_ps q_0 Y\n");
+    fprintf(ov, "[p_N]=Pa F theta_1 theta_2 q_ts q_cs q_ps [q_0]=J/s [Y]=m^3\n");
     
     for(i=0; i<n; i++)
       {
