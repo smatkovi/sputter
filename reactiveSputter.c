@@ -24,6 +24,7 @@ int main()
       {
         //equation A5 for flux F of nitrogen molecules:
         F = p_N / sqrt(2.0*k_B*Pi*T*M);         
+        //alpha_t /= F;//experimental
 
 	//equation A1' for target fractional coverage theta_1:
         theta_one = 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
@@ -44,10 +45,12 @@ int main()
         q_zero = q_t + q_c + q_p;         
 	
 	//equation A6 for total sputtering rate Y:
-        Y = (e/J)*(S_N*theta_one + S_M*(1.0 - theta_one)); 	
+        Y = (J/e)*(S_N*theta_one + S_M*(1.0 - theta_one)); 	
 
 	fprintf(ov, "%le %le %le %le %le %le %le %le %le\n", p_N, F, theta_one, theta_two, q_t, q_c, q_p, q_zero, Y);
+
 	p_N += dp;
+	//T += n/10.0;//experimental
       }
 
     fclose(ov);

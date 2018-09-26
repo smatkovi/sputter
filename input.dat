@@ -9,5 +9,5 @@
 1.27 #ExposedChamberSurface(A_c=1.27m²)
 1.5 #sputteringYieldOfElementalMetalMaterialByIncomingArgonIons(S_M=1.5)
 85.0 #PumpingSpeed(S=85l/s)
-0.75 #stickingCoefficientforNitrogenMoleculeToTitaniumTarget(alpha_t=1)
+1.0 #stickingCoefficientforNitrogenMoleculeToTitaniumTarget(alpha_t=1)
 1.0 #stickingcoefficientforNitrogenMoleculeToTitaniumCoveredPart(1-theta_2)OfChamberWall(alpha_c=1)
