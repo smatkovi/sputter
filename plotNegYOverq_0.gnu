@@ -1,5 +1,5 @@
 se term postscript eps enhanced color
-se output "YOverq_0.ps"
+se output "NegYOverq_0.ps"
 set key autotitle columnheader
 set autoscale xy
 set format y "%e"
