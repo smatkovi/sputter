@@ -82,27 +82,29 @@ equation 2 for flow through pump:
 equation 1 for incoming reactive gas flow:
 	  \begin{equation} q_{0}=q_{t}+q_{c}+q_{p}  \end{equation}
 equation A6 for total sputtering rate Y:
-	\begin{equation} R=\frac{J}{e}[S_{N}\theta_{1}+S_{M}(1-\theta_{1})] \end{equation}
+	\begin{equation} Y=\frac{J}{e}[S_{N}\theta_{1}+S_{M}(1-\theta_{1})] \end{equation}
 
 \end{frame}
 \section{algorithm}
 \begin{frame}{algorithm}
 	solve the equations by assuming a value for $p_{N}$. equations are already solved except A1' and A2', they can be written as:
 	\begin{equation} \theta_{1}=\frac{1}{1+\frac{JS_{N}}{2e\alpha_{t}F}}  \end{equation}
-		\begin{equation} \theta{2}=\frac{\frac{e}{J}2\alpha_{c}F\frac{A_{c}}{A_{t}}+S_N\theta{1}}{\frac{e}{J}2\alpha_{c}F\frac{A_{c}}{A_{t}}+S_N\theta{1}+S_{M}(1-\theta_{1})}  \end{equation}
+		\begin{equation} \theta_{2}=\frac{\frac{e}{J}2\alpha_{c}F\frac{A_{c}}{A_{t}}+S_N\theta_{1}}{\frac{e}{J}2\alpha_{c}F\frac{A_{c}}{A_{t}}+S_N\theta_{1}+S_{M}(1-\theta_{1})}  \end{equation}
 			now assume a new (little higher) value for $p_{N}$
 \end{frame}
 \section{results}
 \begin{frame}{results}
-	for n=5000 iterations, $dp=10^{-6}$Pa pressurechange, $p_N=10^{-6}$Pa initial nitrogen partial pressure, T=300Kelvin, $M=4.651\cdot10^{-26}kg$ mass of nitrogen molecule, $S_{N}=0.3$ sputtering yield of compound by incoming argon ions, $J=14\frac{A}{m^{2}}$ current density of argon ions causing sputtering from target surface, $A_{t}=0.127m^{2}$ target surface, $A_{c}=1.27m^{2}$ exposed chamber surface, $S_{M}=1.5$ sputtering yield of elemental metalmaterial by incoming argon ions, $S=85\frac{l}{s}$ pumping speed, $\alpha_{t}=1$ sticking coefficient for nitrogen molecule to titanium target and $\alpha_{c}=1$ sticking coefficient for nitrogen molecule to titanium covered part $(1-\theta_{2})$ of chamber wall you can get these relationships: although for Y the lower part seems to be missing and for $P_N$ the higher part seems to be missing
+	for n=5000 iterations, $dp=10^{-6}$Pa pressurechange, $p_N=10^{-7}$Pa initial nitrogen partial pressure, T=300Kelvin, $M=4.651\cdot10^{-26}kg$ mass of nitrogen molecule, $S_{N}=0.3$ sputtering yield of compound by incoming argon ions, $J=14\frac{A}{m^{2}}$ current density of argon ions causing sputtering from target surface, $A_{t}=0.127m^{2}$ target surface, $A_{c}=1.27m^{2}$ exposed chamber surface, $S_{M}=1.5$ sputtering yield of elemental metalmaterial by incoming argon ions, $S=85\frac{l}{s}$ pumping speed, $\alpha_{t}=1$ sticking coefficient for nitrogen molecule to titanium target and $\alpha_{c}=1$ sticking coefficient for nitrogen molecule to titanium covered part $(1-\theta_{2})$ of chamber wall you can get these relationships: although for Y the lower part seems to be missing and for $P_N$ the higher part seems to be missing
 \end{frame}
 \begin{frame}{results}
-	\includegraphics[width=2.3in]{YOverq_0.ps}
-	\includegraphics[width=2.3in]{p_NOverq_0.ps}
+	\includegraphics[width=3in]{YOverq_0.ps}
 
-	\includegraphics[width=2.3in]{YOverq_0.png}
-	\includegraphics[width=2.3in]{p_NOverq_0.png}
+	\includegraphics[width=3in]{YOverq_0.png}
+\end{frame}
+\begin{frame}{results}
+	\includegraphics[width=3in]{p_NOverq_0.ps}
 
+	\includegraphics[width=3in]{p_NOverq_0.png}
 \end{frame}
 \end{document}
 \endinput
