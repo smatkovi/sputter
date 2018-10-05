@@ -70,6 +70,12 @@ button = Button(resetax, 'Reset', color=axcolor, hovercolor='0.975')
 def reset(event):
     sfreq.reset()
     samp.reset()
+    sS_M.reset()
+    sa_t.reset()
+    sT.reset()
+button.on_clicked(reset)
+button.on_clicked(reset)
+button.on_clicked(reset)
 button.on_clicked(reset)
 
 rax = plt.axes([0.025, 0.5, 0.15, 0.15], facecolor=axcolor)
