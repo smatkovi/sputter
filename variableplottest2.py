@@ -26,6 +26,14 @@ e = 1.6021766e-19
 k_B = 1.38065e-23
 pi = 4.0*np.arctan(1.0)
 
+s = p_N (S + J A_t S_N (1/(
+          2 e p_N + (J S_N sqrt[2 M \[Pi] T k_B])/
+                 alpha_t) + (J A_c alpha_c S_M sqrt[
+                               2 M \[Pi] T k_B])/(J A_t S_N sqrt[
+                                              2 M \[Pi] T k_B] (2 e alpha_t p_N + 
+                                                              J S_M sqrt[2 M \[Pi] T k_B]) + 
+                                                       2 e A_c alpha_c p_N (2 e alpha_t p_N + 
+                                                                       J S_N sqrt[2 M \[Pi] T k_B]))))
 s = (J*S_N*(2.0*e*alpha_t*t + J*S_M*np.sqrt(2.0*M*pi*T*k_B)))/(e*(2.0*e*alpha_t*t + J*S_N*np.sqrt(2.0*M*pi*T*k_B)))
 #s = J*S_N*(J*np.sqrt(M*T)*S_M+t*alpha_t)/(J*np.sqrt(M*T)*S_N+t*alpha_t)
 l, = plt.plot(t, s, lw=2, color='red')
