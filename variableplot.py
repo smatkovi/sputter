@@ -29,7 +29,7 @@ pi = 4.0*np.arctan(1.0)
 s = (J*S_N*(2.0*e*alpha_t*t + J*S_M*np.sqrt(2.0*M*pi*T*k_B)))/(e*(2.0*e*alpha_t*t + J*S_N*np.sqrt(2.0*M*pi*T*k_B)))
 #s = J*S_N*(J*np.sqrt(M*T)*S_M+t*alpha_t)/(J*np.sqrt(M*T)*S_N+t*alpha_t)
 l, = plt.plot(t, s, lw=2, color='red')
-plt.axis([3e1, 1.4e2, 1.0e17, 4.5e18])
+plt.axis([-0.01, 0.06, 1.0e17, 6e19])
 
 axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
@@ -45,7 +45,7 @@ sfreq = Slider(axfreq, 'J', J, 30.0, valinit=J)
 samp = Slider(axamp, 'S_N', 0.1, 0.3, valinit=S_N)
 sS_M = Slider(axS_M, 'S_M', 1.0, 3.0, valinit=S_M)
 salpha_t = Slider(axalpha_t, 'alpha_t', 0.1, 1.0, valinit=alpha_t)
-sT = Slider(axT, 'T', 273.0, 300.0, valinit=T)
+sT = Slider(axT, 'T', 273.0, 500.0, valinit=T)
 
 
 
