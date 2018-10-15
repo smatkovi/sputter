@@ -28,24 +28,18 @@ z_c = 1
 A_t = 0.127
 A_c = 1.27
 
-s = (1/(2 alpha_t (e\.b2 Y - 
-       e J S_N)))S_N (J\.b2 S_M sqrt[2 M \[Pi] T k_B] - 
-                  e J Y sqrt[M \[Pi] s T k_B]) (S + 
-                             J A_t alpha_t (-e\.b2 Y + 
-                                       e J S_N) (1/(-(e\.b2 J Y + e J\.b2 S_M - e J^2 S_N) sqrt[
-                                                    2 M \[Pi] T k_B] + 
-                                                           e^2 J Y sqrt[
-                                                                        M \[Pi] s T k_B]) + (J A_c alpha_c S_M (-e\.b2 Y + 
-                                                                                       e J S_N) sqrt[
-                                                                                                     2 M \[Pi] T k_B])/(J A_t alpha_t (-e\.b2 Y + e J S_N) sqrt[
-                                                                                                                    2 M \[Pi] T k_B] (-S_M (e\.b2 J Y + 
-                                                                                                                                       e (-J^2 + J\.b2) S_N) sqrt[2 M \[Pi] T k_B] + 
-                                                                                                                                                   e^2 J Y S_N sqrt[M \[Pi] s T k_B]) + 
-                                                                                                                             e A_c alpha_c (-J\.b2 S_M sqrt[2 M \[Pi] T k_B] + 
-                                                                                                                                             e J Y sqrt[
-                                                                                                                                                               M \[Pi] s T k_B]) (-(e\.b2 J S Y + 
-                                                                                                                                                                                   e (-J^2 S + J\.b2 S_M) S_N) sqrt[2 M \[Pi] T k_B] + 
-                                                                                                                                                                                               e^2 J Y S_N sqrt[M \[Pi] s T k_B]))))
+s=(1/(2 e alpha_t (e Y - J S_N)))J S_N (J S_M sqrt[2 M \[Pi] T k_B] - 
+           e Y sqrt[M \[Pi] s T k_B]) (S + 
+                      A_t alpha_t ((-e Y + 
+                                 J S_N)/(-(e Y + J S_M - J S_N) sqrt[2 M \[Pi] T k_B] + 
+                                            e Y sqrt[M \[Pi] s T k_B]) + (
+                                                      A_c alpha_c S_M (e Y - J S_N)^2 sqrt[2 M \[Pi] T k_B])/(
+                                                                e Y A_t alpha_t (e Y - J S_N) sqrt[
+                                                                             2 M \[Pi] T k_B] (S_M sqrt[2 M \[Pi] T k_B] - 
+                                                                                           S_N sqrt[M \[Pi] s T k_B]) + 
+                                                                                    A_c alpha_c (J S_M sqrt[2 M \[Pi] T k_B] - 
+                                                                                                  e Y sqrt[M \[Pi] s T k_B]) ((e S Y + J (-S + S_M) S_N) sqrt[
+                                                                                                                  2 M \[Pi] T k_B] - e Y S_N sqrt[M \[Pi] s T k_B]))))
 #s = (A_c*z_c*t*(1-(S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*np.sqrt(m*T)))/(S_M*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1))+S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*J*np.sqrt(m*T)))))/np.sqrt(m*T)+(A_t*z_t*t*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)))/np.sqrt(m*T)+S*t
 l, = plt.plot(t, s, lw=2, color='red')
 plt.axis([-0.00005, 0.00055, -4e9, 4e8])
