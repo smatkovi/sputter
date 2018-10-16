@@ -15,34 +15,26 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 
 fig, ax = plt.subplots()
 plt.subplots_adjust(left=0.25, bottom=0.6)
-t = np.arange(0.00000001, 0.0005, 0.0000001) #this is the pressure p
+t = np.arange(2e19, 1.4e20, 1e15) #this is the sputter rate Y
 J = 4.0
 S_N = 0.1
 T = 273.0
 S_M = 1.0
 z_t = 1
+e = 1.6021766e-19
 
 S = 50
-m = 4.6518e-26
+M = 4.6518e-26
 z_c = 1
 A_t = 0.127
 A_c = 1.27
+k_B = 1.38065e-23 
 
-s=(1/(2 e alpha_t (e Y - J S_N)))J S_N (J S_M sqrt[2 M \[Pi] T k_B] - 
-           e Y sqrt[M \[Pi] s T k_B]) (S + 
-                      A_t alpha_t ((-e Y + 
-                                 J S_N)/(-(e Y + J S_M - J S_N) sqrt[2 M \[Pi] T k_B] + 
-                                            e Y sqrt[M \[Pi] s T k_B]) + (
-                                                      A_c alpha_c S_M (e Y - J S_N)^2 sqrt[2 M \[Pi] T k_B])/(
-                                                                e Y A_t alpha_t (e Y - J S_N) sqrt[
-                                                                             2 M \[Pi] T k_B] (S_M sqrt[2 M \[Pi] T k_B] - 
-                                                                                           S_N sqrt[M \[Pi] s T k_B]) + 
-                                                                                    A_c alpha_c (J S_M sqrt[2 M \[Pi] T k_B] - 
-                                                                                                  e Y sqrt[M \[Pi] s T k_B]) ((e S Y + J (-S + S_M) S_N) sqrt[
-                                                                                                                  2 M \[Pi] T k_B] - e Y S_N sqrt[M \[Pi] s T k_B]))))
+
+s = (J*(-e*t + J*S_M)*S_N*(S + (A_t*z_t*(-e*t + J*S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) + A_c*z_c*(e*J*t*S_M**2 + e*t*(-e*S*t + (J*S + e*t)*S_N) + J*S_M*(e*S*t + S_N*(-J*S - 3*e*t + J*S_N)))))/(J*(-S_M + S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) - A_c*z_c*(e*t - J*S_M)*(e*S*t - (J*S + e*t - J*S_M)*S_N))*np.sqrt(2*M*np.pi*T*k_B)))*np.sqrt(2*M*np.pi*T*k_B))/(2*e*z_t*(e*t - J*S_N))
 #s = (A_c*z_c*t*(1-(S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*np.sqrt(m*T)))/(S_M*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1))+S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*J*np.sqrt(m*T)))))/np.sqrt(m*T)+(A_t*z_t*t*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)))/np.sqrt(m*T)+S*t
 l, = plt.plot(t, s, lw=2, color='red')
-plt.axis([-0.00005, 0.00055, -4e9, 4e8])
+plt.axis([1e19, 1e20, -4e20, 4e17])
 
 axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
@@ -81,7 +73,8 @@ def update(val):
     z_c = sz_c.val
     A_t = sA_t.val
     A_c = sA_c.val
-    l.set_ydata((A_c*z_c*t*(1-(S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*np.sqrt(m*T)))/(S_M*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1))+S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*J*np.sqrt(m*T)))))/np.sqrt(m*T)+(A_t*z_t*t*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)))/np.sqrt(m*T)+S*t)
+    l.set_ydata((J*(-e*t + J*S_M)*S_N*(S + (A_t*z_t*(-e*t + J*S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) + A_c*z_c*(e*J*t*S_M**2 + e*t*(-e*S*t + (J*S + e*t)*S_N) + J*S_M*(e*S*t + S_N*(-J*S - 3*e*t + J*S_N)))))/(J*(-S_M + S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) - A_c*z_c*(e*t - J*S_M)*(e*S*t - (J*S + e*t - J*S_M)*S_N))*np.sqrt(2*M*np.pi*T*k_B)))*np.sqrt(2*M*np.pi*T*k_B))/(2*e*z_t*(e*t - J*S_N)))
+#    l.set_ydata((A_c*z_c*t*(1-(S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*np.sqrt(m*T)))/(S_M*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1))+S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*J*np.sqrt(m*T)))))/np.sqrt(m*T)+(A_t*z_t*t*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)))/np.sqrt(m*T)+S*t)
     fig.canvas.draw_idle()
 sfreq.on_changed(update)
 samp.on_changed(update)
@@ -104,6 +97,10 @@ def reset(event):
     sz_t.reset()
     sT.reset()
     sS.reset()
+    sz_c.reset()
+    sA_t.reset()
+    sA_c.reset()
+
 button.on_clicked(reset)
 
 rax = plt.axes([0.025, 0.5, 0.15, 0.15], facecolor=axcolor)
