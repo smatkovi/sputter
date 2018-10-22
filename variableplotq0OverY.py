@@ -34,7 +34,7 @@ k_B = 1.38065e-23
 s = (J*(-e*t + J*S_M)*S_N*(S + (A_t*z_t*(-e*t + J*S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) + A_c*z_c*(e*J*t*S_M**2 + e*t*(-e*S*t + (J*S + e*t)*S_N) + J*S_M*(e*S*t + S_N*(-J*S - 3*e*t + J*S_N)))))/(J*(-S_M + S_N)*(e*t*A_t*z_t*(S_M - S_N)*(e*t - J*S_N) - A_c*z_c*(e*t - J*S_M)*(e*S*t - (J*S + e*t - J*S_M)*S_N))*np.sqrt(2*M*np.pi*T*k_B)))*np.sqrt(2*M*np.pi*T*k_B))/(2*e*z_t*(e*t - J*S_N))
 #s = (A_c*z_c*t*(1-(S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*np.sqrt(m*T)))/(S_M*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1))+S_N/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)+(A_c*z_c*t)/(A_t*J*np.sqrt(m*T)))))/np.sqrt(m*T)+(A_t*z_t*t*(1-1/((J*S_N*np.sqrt(m*T))/(z_t*t)+1)))/np.sqrt(m*T)+S*t
 l, = plt.plot(t, s, lw=2, color='red')
-plt.axis([1e19, 1e20, -4e20, 4e17])
+plt.axis([1e19, 1e20, -4e20, 5e20])
 
 axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
