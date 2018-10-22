@@ -27,10 +27,10 @@ int main()
         //alpha_t /= F;//experimental
 
 	//equation A1' for target fractional coverage theta_1:
-        theta_one = 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
+        theta_one = 2.0*e*F*alpha_t/(2.0*e*F*alpha_t+J*S_N);//1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
 
 	//equation A2' for chamber wall and substrate fractional coverage theta_2:
-        theta_two = ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one) / ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one + S_M*(1.0 - theta_one));       
+        theta_two = (2.0*e*F*alpha_c+J*(A_t/A_c)*theta_one*S_N)/(2.0*e*F*alpha_c+J*(A_t/A_c)*(S_M+S_N*theta_one-S_M*theta_two));//((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one) / ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one + S_M*(1.0 - theta_one));       
 
 	//equation A3 for flow to target:
         q_t = alpha_t*F*(1.0 - theta_one)*A_t;         

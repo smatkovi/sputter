@@ -23,7 +23,7 @@ S_M = 1.0
 z_t = 1
 e = 1.6021766e-19
 
-S = 50
+S = 1e-19
 M = 4.6518e-26
 z_c = 1
 A_t = 0.127
@@ -40,6 +40,7 @@ axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
 axamp = plt.axes([0.25, 0.15, 0.65, 0.03], facecolor=axcolor)
 axS_M = plt.axes([0.25, 0.2, 0.65, 0.03], facecolor=axcolor)
+axS_N = plt.axes([0.25, 0.55, 0.65, 0.03], facecolor=axcolor)
 axz_t = plt.axes([0.25, 0.25, 0.65, 0.03], facecolor=axcolor)
 axT = plt.axes([0.25, 0.3, 0.65, 0.03], facecolor=axcolor)
 axS = plt.axes([0.25, 0.35, 0.65, 0.03], facecolor=axcolor)
@@ -49,12 +50,13 @@ axA_c = plt.axes([0.25, 0.5, 0.65, 0.03], facecolor=axcolor)
 
 
 
-sfreq = Slider(axfreq, 'J', 0.1, 30.0, valinit=J)
+sfreq = Slider(axfreq, 'J', 0.01, 30.0, valinit=J)
 samp = Slider(axamp, 'S_N', 0.1, 10.0, valinit=S_N)
 sS_M = Slider(axS_M, 'S_M', 1.0, 3.0, valinit=S_M)
+sS_N = Slider(axS_N, 'S_N', 0.1, 3.0, valinit=S_N)
 sz_t = Slider(axz_t, 'z_t', 0.1, 1.0, valinit=z_t)
 sT = Slider(axT, 'T', 273.0, 500.0, valinit=T)
-sS = Slider(axS, 'S', 10.0, 200.0, valinit=S)
+sS = Slider(axS, 'S', 1e-19, 200.0, valinit=S)
 sz_c = Slider(axz_c, 'z_c', 0.1, 1.0, valinit=z_c)
 sA_t = Slider(axA_t, 'A_t', 0.001, 0.3, valinit=A_t)
 sA_c = Slider(axA_c, 'A_c', 0, 3.0, valinit=A_c)
@@ -94,6 +96,7 @@ def reset(event):
     sfreq.reset()
     samp.reset()
     sS_M.reset()
+    sS_N.reset()
     sz_t.reset()
     sT.reset()
     sS.reset()
