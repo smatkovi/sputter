@@ -1,2 +1,2 @@
-This program (reactiveSputter.out) calculates flow (q_0) and yield (Y) and other values needed for their calculation in reactive sputtering processes. it takes inputvalues from input.dat, writes them to output.dat and plots Y over q_0 as well as  the pressure of the reactive gas nitrogen (p_N) over q_0.
-invoke variableplot.py and variableplot2.py with python3 variableplot.py
+This program (reactiveSputter.out compiled from reactiveSputter.c) calculates flow (q_0) and yield (Y) and other values needed for their calculation in reactive sputtering processes. it takes inputvalues from input.dat, writes them to output.dat and plots Y over q_0 as well as  the pressure of the reactive gas nitrogen (p_N) over q_0.
+invoke variableplot*.py with python3 variableplot*.py
