@@ -18,7 +18,7 @@ int main()
 
     //write order of outputvalues to output.dat and do actual calculations:
     FILE *ov = fopen("output.dat","w");
-    fprintf(ov, "[p_N]=Pa F theta_1 theta_2 q_ts q_cs q_ps [q_0]=J/s Y\n");
+    fprintf(ov, "[p_N]=Pa F theta_1 theta_2 q_t q_c q_p [q_0]=J/s Y\n");
     
     for(i=0; i<n; i++)
       {
@@ -55,6 +55,6 @@ int main()
 
     fclose(ov);
     printf("\ncalculated values for p_N, F, theta_1, theta_2, q_t, q_c, q_p, q_0, Y written to output.dat, plotting to YOverq_0.ps and p_NOverq_0.ps\n");
-    system("gnuplot plotYOverq_0.gnu; gnuplot plotp_NOverq_0.gnu");
+    system("gnuplot plotYOverq_0.gnu; gnuplot plotp_NOverq_0.gnu; gnuplot plotp_NOverq_t.gnu; gnuplot plotp_NOverq_c.gnu; gnuplot plotp_NOverq_p.gnu");
     return 0;
   }
