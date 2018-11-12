@@ -1,6 +1,6 @@
-1000 #numberOfIterations(n=100000)
+10000 #numberOfIterations(n=100000)
 1e-6 2.0e-12#changeOfPressureAtIteration(dp=1e-6Pa)
-1e-7 0.0#initialNitrogenPartialPressure(p_N=1e-7Pa)
+1e-15 0.0#initialNitrogenPartialPressure(p_N=1e-7Pa)
 300.0 #T=300K
 4.6518e-26 #massOfNitrogenMolecule(M=28.014uOr4.6518e-26kg)
 0.3 #sputteringYieldOfCompoundByIncomingArgonIons(S_N=0.3)
