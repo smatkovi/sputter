@@ -8,7 +8,7 @@ int main()
     double Pi = 4.0*atan(1), e = 1.6021766e-19, k_B = 1.38065e-23; //constants
     double m_e = 9.10938356e-31, h = 6.62607004e-34; //constants for thermic correction
     double p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c, dp; //inputvalues
-    double w=0.5; //inputvalue(s) for thermic correction
+    double w=1; //inputvalue(s) for thermic correction
     double F, theta_one, theta_two, q_t, q_c, q_p, q_zero, Y; //outputvalues
     double J_s; //outputvalue(s) for thermic correction
 
@@ -33,7 +33,7 @@ int main()
 
 	//equation A1' for target fractional coverage theta_1:
         //theta_one = 2.0*e*F*alpha_t/(2.0*e*F*alpha_t+J*S_N);
-	theta_one = J_s/F; //i would assume the inverse of this and there could be a constant missing in J_s, like J_s = J_s + constant, old function from berg et alii's paper: 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
+	theta_one = J_s/F;//J_s/F, i would assume the inverse of this and there could be a constant missing in J_s, like J_s = J_s + constant, old function from berg et alii's paper: 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
 
 	//equation A2' for chamber wall and substrate fractional coverage theta_2:
         //theta_two = (2.0*e*F*alpha_c+J*(A_t/A_c)*theta_one*S_N)/(2.0*e*F*alpha_c+J*(A_t/A_c)*(S_M+S_N*theta_one-S_M*theta_one));
