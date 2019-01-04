@@ -6,8 +6,11 @@ int main()
   {
     int i, n; //i...loop variable n...number of iterations
     double Pi = 4.0*atan(1), e = 1.6021766e-19, k_B = 1.38065e-23; //constants
+    double m_e = 9.10938356e-31, h = 6.62607004e-34; //constants for thermic correction
     double p_N, T, M, S_N, J, A_t, A_c, S_M, S, alpha_t, alpha_c, dp; //inputvalues
+    double w=0.5; //inputvalue(s) for thermic correction
     double F, theta_one, theta_two, q_t, q_c, q_p, q_zero, Y; //outputvalues
+    double J_s; //outputvalue(s) for thermic correction
 
     //read inputvalues and print them:
     FILE *iv;
@@ -20,6 +23,9 @@ int main()
     FILE *ov = fopen("output.dat","w");
     fprintf(ov, "[p_N]=Pa F theta_1 theta_2 [q_t]=J/s [q_c]=J/s [q_p]=J/s [q_0]=J/s Y\n");
     
+    //Schottkyemission:
+    J_s = 4*Pi*m_e/pow(h, 3) * pow(e*k_B*T, 2) * exp(-w/(k_B*T));
+    
     for(i=0; i<n; i++)
       {
         //equation A5 for flux F of nitrogen molecules:
@@ -27,11 +33,11 @@ int main()
 
 	//equation A1' for target fractional coverage theta_1:
         //theta_one = 2.0*e*F*alpha_t/(2.0*e*F*alpha_t+J*S_N);
-	theta_one = 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
+	theta_one = J_s/F; //i would assume the inverse of this and there could be a constant missing in J_s, like J_s = J_s + constant, old function from berg et alii's paper: 1.0 / (1.0 + (J*S_N/e)/(2.0*alpha_t*F));         
 
 	//equation A2' for chamber wall and substrate fractional coverage theta_2:
-       //theta_two = (2.0*e*F*alpha_c+J*(A_t/A_c)*theta_one*S_N)/(2.0*e*F*alpha_c+J*(A_t/A_c)*(S_M+S_N*theta_one-S_M*theta_one));
-theta_two = ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one) / ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one + S_M*(1.0 - theta_one));       
+        //theta_two = (2.0*e*F*alpha_c+J*(A_t/A_c)*theta_one*S_N)/(2.0*e*F*alpha_c+J*(A_t/A_c)*(S_M+S_N*theta_one-S_M*theta_one));
+        theta_two = ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one) / ((e/J)*2.0*alpha_c*F*(A_c/A_t) + S_N*theta_one + S_M*(1.0 - theta_one));       
 
 	//equation A3 for flow to target:
         q_t = alpha_t*F*(1.0 - theta_one)*A_t;         
